@@ -1,10 +1,14 @@
 package com.example._restdatajpa;
 
+import com.example._restdatajpa.model.Book;
+import com.example._restdatajpa.repository.BookRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class Application {
@@ -12,12 +16,15 @@ public class Application {
 		ApplicationContext context = SpringApplication.run(Application.class, args);
 
 		//Operacions CRUD con libros ->
-		BookRepository bookRepo= (BookRepository) context.getBean(BookRepository.class);
+
+		BookRepository bookRepo= context.getBean(BookRepository.class);
 
 		//Crear Libro ->
 		Book libro1 = new Book(null, "titulo1", "author1",351, 12.51, LocalDate.of(1951,10,20), false);
 		Book libro2 = new Book(null, "titulo2", "author2",352, 12.52, LocalDate.of(1952,10,20), true);
 		Book libro3 = new Book(null, "titulo3", "author3",353, 12.53, LocalDate.of(1953,10,20), false);
+
+
 
 		//Guardar Libros ->
 		bookRepo.save(libro1);
@@ -27,13 +34,13 @@ public class Application {
 
 
 		//recuperar todos los libros ->
-		for (Book lbr: bookRepo.findAll()){
-			System.out.println(lbr);
-		}
+		//for (Book lbr: bookRepo.findAll()){
+		//	System.out.println(lbr);
+		//}
 
 		//Eliminar Por Id ->
-		bookRepo.deleteById(1L);
+		//bookRepo.deleteById(1L);
 		//Contar Todos Los Libros ->
-		System.out.println(bookRepo.count());
+		//System.out.println(bookRepo.count());
 	}
 }
